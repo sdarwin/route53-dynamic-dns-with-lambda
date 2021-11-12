@@ -32,7 +32,7 @@ Parameters:
     Description: "Enable an API key to protect your API Gateway"
 
   enableCloudFront:
-    Default: false
+    Default: withCustomAlias
     Type: String
     AllowedValues: [false, withCustomAlias, withoutCustomAlias]
     Description: "CloudFront is required for ipv6 or to use a custom dns endpoint (Alias) for your API."
@@ -710,7 +710,7 @@ Resources:
         def validate_hash(set_hostname, source_ip, validation_hash, shared_secret):
             # Calculate the validation hash.
             calculated_hash = hashlib.sha256(
-                source_ip + set_hostname + shared_secret).hexdigest()
+                source_ip.encode("utf-8") + set_hostname.encode("utf-8") + shared_secret.encode("utf-8")).hexdigest()
             # Compare the validation_hash from the client to the
             # calculated_hash.
             # If they don't match, error out.
