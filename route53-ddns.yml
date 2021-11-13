@@ -32,7 +32,7 @@ Parameters:
     Description: "Enable an API key to protect your API Gateway"
 
   enableCloudFront:
-    Default: withCustomAlias
+    Default: false
     Type: String
     AllowedValues: [false, withCustomAlias, withoutCustomAlias]
     Description: "CloudFront is required for ipv6 or to use a custom dns endpoint (Alias) for your API."
